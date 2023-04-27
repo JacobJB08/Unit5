@@ -13,6 +13,7 @@ public class Target : MonoBehaviour
     private GameManager gameManager;
     public int pointValue;
     public ParticleSystem explosionParticle;
+    public float zSpawnPos = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +37,7 @@ public class Target : MonoBehaviour
 
     Vector3 RandomSpawnPos()
     {
-        return new Vector3(Random.Range(-xRange, xRange), ySpawnPos);
+        return new Vector3(Random.Range(-xRange, xRange), ySpawnPos, zSpawnPos);
     }
     // Update is called once per frame
     void Update()
