@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     public GameObject display1;
     public TextMeshProUGUI livesText;
     private int lives;
+    public GameObject pauseScreen;
+    private bool paused;
 
     // Start is called before the first frame update
     void Start()
@@ -46,7 +48,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            ChangePaused();
+        }
     }
 
     public void UpdateScore(int scoreToAdd)
@@ -81,5 +86,21 @@ public class GameManager : MonoBehaviour
         spawnRate /= difficulty;
         point.gameObject.SetActive(true);
         display1.gameObject.SetActive(true);
+    }
+
+    void ChangePaused()
+    {
+        if (!paused)
+        {
+            paused = true;
+            pauseScreen.SetActive(true);
+            Time.timeScale = 0;
+        }
+        else
+        {
+            paused = false;
+            pauseScreen.SetActive(false);
+            Time.timeScale = 1;
+        }
     }
 }
